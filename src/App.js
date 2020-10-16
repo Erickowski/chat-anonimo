@@ -1,7 +1,19 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import "../assets/css/index.css";
+import Header from "./components/Header";
+import Login from "./components/Login";
+
+import { GlobalStyles } from "./GlobalStyles";
 
 export const App = () => {
-  return <h1>Hola mundo cruel</h1>;
+  return (
+    <Router>
+      <GlobalStyles />
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Login} />
+      </Switch>
+    </Router>
+  );
 };
