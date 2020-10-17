@@ -1,0 +1,2 @@
+// Auth
+export const REGISTRO_USUARIO = "REGISTRO_USUARIO";
