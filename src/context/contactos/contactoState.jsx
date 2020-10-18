@@ -17,6 +17,10 @@ const ContactoState = ({ children }) => {
                 id: 2,
                 nombre: "Perez",
             },
+            {
+                id: 3,
+                nombre: "Mata",
+            },
         ],
     };
     const [state, dispatch] = useReducer(ContactoReducer, initialState);

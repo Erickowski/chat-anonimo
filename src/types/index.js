@@ -7,3 +7,6 @@ export const CREAR_CONTACTO = "CREAR_CONTACTO";
 
 // Grupos
 export const CREAR_GRUPO = "CREAR_GRUPO";
+
+// Chats
+export const CREAR_CHAT = "CREAR_CHAT";

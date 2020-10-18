@@ -8,24 +8,27 @@ import Home from "./components/Home";
 import AuthState from "./context/auth/authState";
 import GrupoState from "./context/grupos/grupoState";
 import ContactoState from "./context/contactos/contactoState";
+import ChatState from "./context/chats/chatState";
 
 import { GlobalStyles } from "./GlobalStyles";
 
 export const App = () => {
   return (
     <AuthState>
-      <ContactoState>
-        <GrupoState>
-          <Router>
-            <GlobalStyles />
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Login} />
-              <Route exact path="/home" component={Home} />
-            </Switch>
-          </Router>
-        </GrupoState>
-      </ContactoState>
+      <ChatState>
+        <ContactoState>
+          <GrupoState>
+            <Router>
+              <GlobalStyles />
+              <Header />
+              <Switch>
+                <Route exact path="/" component={Login} />
+                <Route exact path="/home" component={Home} />
+              </Switch>
+            </Router>
+          </GrupoState>
+        </ContactoState>
+      </ChatState>
     </AuthState>
   );
 };
