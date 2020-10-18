@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
 import AuthContext from "../context/auth/authContext";
+import ContactoContext from "../context/contactos/contactoContext";
+
 import ModalContainer from "./Modal";
 
 const Nav = styled.nav`
@@ -40,6 +41,9 @@ const Header = () => {
 
     const authContext = useContext(AuthContext);
     const { usuario, cerrarSesion, registrarUsuario } = authContext;
+
+    const contactoContext = useContext(ContactoContext);
+    const { crearContacto } = contactoContext;
 
     const [modalContact, setModalContact] = useState(false);
     const [modalGroup, setModalGroup] = useState(false);
@@ -112,7 +116,7 @@ const Header = () => {
                     {modalContact && (
                         <ModalContainer
                             modal={modalContact}
-                            funcionRegistro={registrarUsuario}
+                            funcionRegistro={crearContacto}
                             setModal={setModalContact}
                             closeModal={closeModalContact}
                             textSubmit="Crear contacto"

@@ -10,10 +10,10 @@ const AuthState = ({ children }) => {
     };
     const [state, dispatch] = useReducer(AuthReducer, initialState);
     // Funciones
-    const registrarUsuario = (datos) => {
+    const registrarUsuario = (usuario) => {
         dispatch({
             type: REGISTRO_USUARIO,
-            payload: datos,
+            payload: usuario,
         });
     };
     const cerrarSesion = () => {
