@@ -8,18 +8,7 @@ import { CREAR_GRUPO } from "../../types";
 
 const GrupoState = ({ children }) => {
     const initialState = {
-        grupos: [
-            {
-                id: uuid(),
-                nombre: "Amigos",
-                integrantes: [1, 2],
-            },
-            {
-                id: uuid(),
-                nombre: "Todos",
-                integrantes: [1, 2, 3],
-            },
-        ],
+        grupos: [],
     };
     const [state, dispatch] = useReducer(GrupoReducer, initialState);
     // Funciones

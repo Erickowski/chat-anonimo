@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 
 import ContactoContext from "../context/contactos/contactoContext";
@@ -34,6 +34,11 @@ const Sidebar = () => {
 
     const [contacts, saveContacts] = useState([...contactos]);
     const [groups, saveGroups] = useState([...grupos]);
+
+    useEffect(() => {
+        saveContacts(contactos);
+        saveGroups(grupos);
+    }, [contactos, grupos]);
 
     const handleFilterContacts = (e) => {
         saveFilterContacts(e.target.value);
@@ -79,7 +84,7 @@ const Sidebar = () => {
                 </ul>
             )}
             <h2>Tus contactos</h2>
-            {contacts.length === 0 ? (
+            {contactos.length === 0 ? (
                 <p>No tienes contactos, crea uno.</p>
             ) : (
                 <>
@@ -113,7 +118,7 @@ const Sidebar = () => {
                 </>
             )}
             <h2>Tus grupos</h2>
-            {groups.length === 0 ? (
+            {grupos.length === 0 ? (
                 <p>No tienes grupos, crea uno.</p>
             ) : (
                 <>

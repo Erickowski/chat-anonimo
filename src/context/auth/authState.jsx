@@ -6,7 +6,7 @@ import { CERRAR_SESION, REGISTRO_USUARIO } from "../../types";
 
 const AuthState = ({ children }) => {
     const initialState = {
-        usuario: "Erick",
+        usuario: null,
     };
     const [state, dispatch] = useReducer(AuthReducer, initialState);
     // Funciones

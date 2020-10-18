@@ -111,7 +111,11 @@ const Home = (props) => {
                                 <MembersContainer>
                                     {contactos.map((contacto) => {
                                         if (members.includes(contacto.id)) {
-                                            return <p>{contacto.nombre}</p>;
+                                            return (
+                                                <p key={contacto.id}>
+                                                    {contacto.nombre}
+                                                </p>
+                                            );
                                         }
                                     })}
                                 </MembersContainer>
