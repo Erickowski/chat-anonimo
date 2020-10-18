@@ -8,7 +8,16 @@ import { CREAR_CONTACTO } from "../../types";
 
 const ContactoState = ({ children }) => {
     const initialState = {
-        contactos: [],
+        contactos: [
+            {
+                id: 1,
+                nombre: "Daniel",
+            },
+            {
+                id: 2,
+                nombre: "Perez",
+            },
+        ],
     };
     const [state, dispatch] = useReducer(ContactoReducer, initialState);
     // Funciones

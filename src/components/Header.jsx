@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import AuthContext from "../context/auth/authContext";
 import ContactoContext from "../context/contactos/contactoContext";
+import GrupoContext from "../context/grupos/grupoContext";
 
 import ModalContainer from "./Modal";
 
@@ -43,7 +44,10 @@ const Header = () => {
     const { usuario, cerrarSesion, registrarUsuario } = authContext;
 
     const contactoContext = useContext(ContactoContext);
-    const { crearContacto } = contactoContext;
+    const { crearContacto, contactos } = contactoContext;
+
+    const grupoContext = useContext(GrupoContext);
+    const { crearGrupo } = grupoContext;
 
     const [modalContact, setModalContact] = useState(false);
     const [modalGroup, setModalGroup] = useState(false);
@@ -121,16 +125,19 @@ const Header = () => {
                             closeModal={closeModalContact}
                             textSubmit="Crear contacto"
                             textLabel="Escriba el nombre del nuevo contacto:"
+                            textError="El nombre es obligatorio."
                         />
                     )}
                     {modalGroup && (
                         <ModalContainer
                             modal={modalGroup}
-                            funcionRegistro={registrarUsuario}
+                            funcionRegistro={crearGrupo}
                             setModal={setModalGroup}
                             closeModal={closeModalGroup}
                             textSubmit="Crear grupo"
                             textLabel="Escriba el nombre del nuevo grupo:"
+                            contactos={contactos}
+                            textError="El nombre es obligatorio y selecciona al menos un contacto."
                         />
                     )}
                     {modalName && (
@@ -141,6 +148,7 @@ const Header = () => {
                             closeModal={closeModalName}
                             textSubmit="Cambiar nombre"
                             textLabel="Cambie su nombre de usuario:"
+                            textError="El nombre es obligatorio."
                         />
                     )}
                 </div>

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import ContactoContext from "../context/contactos/contactoContext";
+import GrupoContext from "../context/grupos/grupoContext";
 
 const SidebarContainer = styled.div`
     display: flex;
@@ -14,6 +15,9 @@ const Sidebar = () => {
     const contactoContext = useContext(ContactoContext);
     const { contactos } = contactoContext;
 
+    const grupoContext = useContext(GrupoContext);
+    const { grupos } = grupoContext;
+
     return (
         <SidebarContainer>
             <h2>Tus contactos</h2>
@@ -22,12 +26,20 @@ const Sidebar = () => {
             ) : (
                 <ul>
                     {contactos.map((contacto) => (
-                        <li>{contacto.nombre}</li>
+                        <li key={contacto.id}>{contacto.nombre}</li>
                     ))}
                 </ul>
             )}
             <h2>Tus grupos</h2>
-            <p>No tienes grupos, crea uno.</p>
+            {grupos.length === 0 ? (
+                <p>No tienes grupos, crea uno.</p>
+            ) : (
+                <ul>
+                    {grupos.map((grupo) => (
+                        <li key={grupo.id}>{grupo.nombre}</li>
+                    ))}
+                </ul>
+            )}
         </SidebarContainer>
     );
 };
