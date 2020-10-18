@@ -10,3 +10,7 @@ export const CREAR_GRUPO = "CREAR_GRUPO";
 
 // Chats
 export const CREAR_CHAT = "CREAR_CHAT";
+export const ABRIR_CHAT = "ABRIR_CHAT";
+
+// Mensajes
+export const CREAR_MENSAJE = "CREAR_MENSAJE";

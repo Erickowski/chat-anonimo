@@ -27,7 +27,7 @@ const Sidebar = () => {
     const { grupos } = grupoContext;
 
     const chatContext = useContext(ChatContext);
-    const { chats, crearChat } = chatContext;
+    const { chats, crearChat, abrirChat, activeChat } = chatContext;
 
     return (
         <SidebarContainer>
@@ -37,7 +37,15 @@ const Sidebar = () => {
             ) : (
                 <ul>
                     {chats.map((chat) => (
-                        <li key={chat.id}>{chat.nombre}</li>
+                        <li key={chat.id}>
+                            {chat.nombre}{" "}
+                            {activeChat !== chat.id && (
+                                <i
+                                    onClick={() => abrirChat(chat.id)}
+                                    className="fas fa-comments"
+                                ></i>
+                            )}
+                        </li>
                     ))}
                 </ul>
             )}

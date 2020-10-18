@@ -77,7 +77,9 @@ const Modal = ({
                 ) : (
                     <div className="form-container">
                         <form onSubmit={onSubmit}>
-                            {error && <p>{textError}</p>}
+                            {error && (
+                                <p className="error-message">{textError}</p>
+                            )}
                             <label htmlFor="">{textLabel}</label>
                             <input
                                 type="text"
