@@ -28,6 +28,9 @@ const MessageContainer = styled.div`
     p {
         margin: 0 10px;
     }
+    .fa-trash-alt {
+        cursor: pointer;
+    }
 `;
 
 const Home = (props) => {
@@ -38,7 +41,7 @@ const Home = (props) => {
     const { chats, activeChat } = chatContext;
 
     const messageContext = useContext(MessageContext);
-    const { mensajes, crearMensaje } = messageContext;
+    const { mensajes, crearMensaje, eliminarMensaje } = messageContext;
 
     const [chatInfo, saveChatInfo] = useState("");
     const [message, saveMessage] = useState("");
@@ -111,7 +114,12 @@ const Home = (props) => {
                                 <MessageContainer>
                                     <i className="fas fa-user"></i>
                                     <p>{mensaje.mensaje}</p>
-                                    <i className="fas fa-trash-alt"></i>
+                                    <i
+                                        className="fas fa-trash-alt"
+                                        onClick={() =>
+                                            eliminarMensaje(mensaje.id)
+                                        }
+                                    ></i>
                                 </MessageContainer>
                             ))
                         )}

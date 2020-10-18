@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import MessageContext from "./messageContext";
 import MessageReducer from "./messageReducer";
 
-import { CREAR_MENSAJE } from "../../types";
+import { CREAR_MENSAJE, ELIMINAR_MENSAJE } from "../../types";
 
 const MessageState = ({ children }) => {
     const initialState = {
@@ -25,9 +25,16 @@ const MessageState = ({ children }) => {
         });
     };
 
+    const eliminarMensaje = (mensaje) => {
+        dispatch({
+            type: ELIMINAR_MENSAJE,
+            payload: mensaje,
+        });
+    };
+
     return (
         <MessageContext.Provider
-            value={{ mensajes: state.mensajes, crearMensaje }}
+            value={{ mensajes: state.mensajes, crearMensaje, eliminarMensaje }}
         >
             {children}
         </MessageContext.Provider>

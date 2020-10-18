@@ -14,3 +14,4 @@ export const ABRIR_CHAT = "ABRIR_CHAT";
 
 // Mensajes
 export const CREAR_MENSAJE = "CREAR_MENSAJE";
+export const ELIMINAR_MENSAJE = "ELIMINAR_MENSAJE";
