@@ -11,7 +11,7 @@ Chat anonimo es una aplicación donde puedes ingresar con un nombre de usuario, 
 $ npm install
 
 # Encender servidor de desarrollo en localhost:3000
-$ npm start
+$ npm run dev
 
 # Crear version de producción
 $ npm run build
@@ -25,3 +25,5 @@ $ npm run build
 -   Styled Components
 
 ## 💣 Despliegue
+
+https://upbeat-sammet-ba96d0.netlify.app/
