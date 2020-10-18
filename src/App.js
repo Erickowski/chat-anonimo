@@ -6,20 +6,26 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 
 import AuthState from "./context/auth/authState";
+import GrupoState from "./context/grupos/grupoState";
+import ContactoState from "./context/contactos/contactoState";
 
 import { GlobalStyles } from "./GlobalStyles";
 
 export const App = () => {
   return (
     <AuthState>
-      <Router>
-        <GlobalStyles />
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/home" component={Home} />
-        </Switch>
-      </Router>
+      <ContactoState>
+        <GrupoState>
+          <Router>
+            <GlobalStyles />
+            <Header />
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/home" component={Home} />
+            </Switch>
+          </Router>
+        </GrupoState>
+      </ContactoState>
     </AuthState>
   );
 };

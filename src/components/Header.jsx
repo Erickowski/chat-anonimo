@@ -1,32 +1,11 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import Modal from "@material-ui/core/Modal";
-import { makeStyles } from "@material-ui/core/styles";
+
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
 import AuthContext from "../context/auth/authContext";
-
-function getModalStyle() {
-    const top = 50;
-    const left = 50;
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        position: "absolute",
-        width: 450,
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-    },
-}));
+import ModalContainer from "./Modal";
 
 const Nav = styled.nav`
     background-color: #2c3e50;
@@ -58,11 +37,9 @@ const Nav = styled.nav`
 
 const Header = () => {
     const history = useHistory();
-    const authContext = useContext(AuthContext);
-    const { usuario, cerrarSesion } = authContext;
 
-    const [modalStyle] = useState(getModalStyle);
-    const classes = useStyles();
+    const authContext = useContext(AuthContext);
+    const { usuario, cerrarSesion, registrarUsuario } = authContext;
 
     const [modalContact, setModalContact] = useState(false);
     const [modalGroup, setModalGroup] = useState(false);
@@ -132,36 +109,36 @@ const Header = () => {
                             Cerrar sesión
                         </li>
                     </ul>
-                    <Modal
-                        open={modalContact}
-                        onClose={() => {
-                            closeModalContact();
-                        }}
-                    >
-                        <div style={modalStyle} className={classes.paper}>
-                            <h2>Hola desde modal Contacto</h2>
-                        </div>
-                    </Modal>
-                    <Modal
-                        open={modalGroup}
-                        onClose={() => {
-                            closeModalGroup();
-                        }}
-                    >
-                        <div style={modalStyle} className={classes.paper}>
-                            <h2>Hola desde modal Grupo</h2>
-                        </div>
-                    </Modal>
-                    <Modal
-                        open={modalName}
-                        onClose={() => {
-                            closeModalName();
-                        }}
-                    >
-                        <div style={modalStyle} className={classes.paper}>
-                            <h2>Hola desde modal Name</h2>
-                        </div>
-                    </Modal>
+                    {modalContact && (
+                        <ModalContainer
+                            modal={modalContact}
+                            funcionRegistro={registrarUsuario}
+                            setModal={setModalContact}
+                            closeModal={closeModalContact}
+                            textSubmit="Crear contacto"
+                            textLabel="Escriba el nombre del nuevo contacto:"
+                        />
+                    )}
+                    {modalGroup && (
+                        <ModalContainer
+                            modal={modalGroup}
+                            funcionRegistro={registrarUsuario}
+                            setModal={setModalGroup}
+                            closeModal={closeModalGroup}
+                            textSubmit="Crear grupo"
+                            textLabel="Escriba el nombre del nuevo grupo:"
+                        />
+                    )}
+                    {modalName && (
+                        <ModalContainer
+                            modal={modalName}
+                            funcionRegistro={registrarUsuario}
+                            setModal={setModalName}
+                            closeModal={closeModalName}
+                            textSubmit="Cambiar nombre"
+                            textLabel="Cambie su nombre de usuario:"
+                        />
+                    )}
                 </div>
             ) : (
                 <h1>Chat Anónimo</h1>
