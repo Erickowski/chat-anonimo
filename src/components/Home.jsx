@@ -6,6 +6,8 @@ import Sidebar from "./Sidebar";
 import AuthContext from "../context/auth/authContext";
 import ChatContext from "../context/chats/chatContext";
 import MessageContext from "../context/messages/messageContext";
+import GrupoContext from "../context/grupos/grupoContext";
+import ContactoContext from "../context/contactos/contactoContext";
 
 const HomeContainer = styled.div`
     width: 100vw;
@@ -33,6 +35,12 @@ const MessageContainer = styled.div`
     }
 `;
 
+const MembersContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+`;
+
 const Home = (props) => {
     const authContext = useContext(AuthContext);
     const { usuario } = authContext;
@@ -43,7 +51,14 @@ const Home = (props) => {
     const messageContext = useContext(MessageContext);
     const { mensajes, crearMensaje, eliminarMensaje } = messageContext;
 
+    const grupoContext = useContext(GrupoContext);
+    const { grupos } = grupoContext;
+
+    const contactoContext = useContext(ContactoContext);
+    const { contactos } = contactoContext;
+
     const [chatInfo, saveChatInfo] = useState("");
+    const [members, saveMembers] = useState([]);
     const [message, saveMessage] = useState("");
     const [error, saveError] = useState(false);
 
@@ -56,10 +71,16 @@ const Home = (props) => {
             const chat = chats.filter((chat) => chat.id === activeChat);
             saveChatInfo(chat[0]);
         }
+        if (chatInfo.type === "group") {
+            const chatGroup = grupos.filter(
+                (grupo) => grupo.id === chatInfo.idType
+            );
+            saveMembers(chatGroup[0].integrantes);
+        }
         if (!usuario) {
             props.history.push("/");
         }
-    }, [activeChat]);
+    }, [activeChat, chatInfo]);
 
     const handleMessage = () => {
         if (message.trim() === "") {
@@ -84,6 +105,18 @@ const Home = (props) => {
                 {activeChat && (
                     <>
                         <h2>{chatInfo.nombre}</h2>
+                        {chatInfo.type === "group" && (
+                            <>
+                                <h3>Miembros del chat</h3>
+                                <MembersContainer>
+                                    {contactos.map((contacto) => {
+                                        if (members.includes(contacto.id)) {
+                                            return <p>{contacto.nombre}</p>;
+                                        }
+                                    })}
+                                </MembersContainer>
+                            </>
+                        )}
                         <p>
                             Puedes empezar a enviar mensajes en el cuadro de
                             abajo.
