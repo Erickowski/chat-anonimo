@@ -2,11 +2,11 @@ import React, { useReducer } from "react";
 import AuthContext from "./authContext";
 import AuthReducer from "./authReducer";
 
-import { REGISTRO_USUARIO } from "../../types";
+import { CERRAR_SESION, REGISTRO_USUARIO } from "../../types";
 
 const AuthState = ({ children }) => {
     const initialState = {
-        usuario: null,
+        usuario: "Erick",
     };
     const [state, dispatch] = useReducer(AuthReducer, initialState);
     // Funciones
@@ -16,11 +16,17 @@ const AuthState = ({ children }) => {
             payload: datos,
         });
     };
+    const cerrarSesion = () => {
+        dispatch({
+            type: CERRAR_SESION,
+        });
+    };
     return (
         <AuthContext.Provider
             value={{
                 usuario: state.usuario,
                 registrarUsuario,
+                cerrarSesion,
             }}
         >
             {children}

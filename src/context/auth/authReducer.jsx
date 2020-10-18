@@ -1,4 +1,4 @@
-const { REGISTRO_USUARIO } = require("../../types");
+const { REGISTRO_USUARIO, CERRAR_SESION } = require("../../types");
 
 export default (state, action) => {
     switch (action.type) {
@@ -6,6 +6,11 @@ export default (state, action) => {
             return {
                 ...state,
                 usuario: action.payload,
+            };
+        case CERRAR_SESION:
+            return {
+                ...state,
+                usuario: null,
             };
         default:
             return state;

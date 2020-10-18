@@ -47,7 +47,7 @@ const Login = (props) => {
     const [error, saveError] = useState(false);
 
     const authContext = useContext(AuthContext);
-    const { registrarUsuario } = authContext;
+    const { usuario, registrarUsuario } = authContext;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -59,6 +59,10 @@ const Login = (props) => {
         registrarUsuario(user);
         props.history.push("/home");
     };
+
+    if (usuario) {
+        props.history.push("/home");
+    }
 
     return (
         <FormContainer>
